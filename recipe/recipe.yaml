@@ -1,5 +1,5 @@
 context:
-  version: 0.3.34
+  version: "0.3.35"
 
 package:
   name: picamera2
@@ -7,10 +7,10 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/p/picamera2/picamera2-${{ version }}.tar.gz
-    sha256: fa923c2d25a124b1b591b332e10836a08690a1cf6bd233bb25862466d881229d
+    sha256: c34b36e8cce0f64a7b5a380db2d6a81a5d70dcacb07a9d3572510f6f2bc0911f
 
 build:
-  number: 1
+  number: 0
   script: ${{ PYTHON }} -m pip install .
   noarch: python
 
@@ -42,7 +42,9 @@ tests:
       imports:
         - picamera2
       pip_check: false
-      python_version: ${{ python_min }}.*
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
   - script: run_test.py
     requirements:
       run:
