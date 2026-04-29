@@ -42,7 +42,9 @@ tests:
       imports:
         - picamera2
       pip_check: false
-      python_version: ${{ python_min }}.*
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
   - script: run_test.py
     requirements:
       run:
