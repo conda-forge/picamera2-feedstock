@@ -1,5 +1,5 @@
 context:
-  version: "0.3.38"
+  version: "0.3.39"
 
 package:
   name: picamera2
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/p/picamera2/picamera2-${{ version }}.tar.gz
-    sha256: f4122b1d3d45e3068fe2d589b1d54ded94377d26b9444e1a0c67025b717b6108
+    sha256: 63edb7898b6b652711b5fc1a2f3d6e075b3f884b2b5e40b05037dbe67a1e49f4
 
 build:
   number: 0
