@@ -10,7 +10,7 @@ source:
     sha256: 63edb7898b6b652711b5fc1a2f3d6e075b3f884b2b5e40b05037dbe67a1e49f4
 
 build:
-  number: 0
+  number: 1
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   noarch: python
 
@@ -21,7 +21,10 @@ requirements:
     - setuptools >=64
   run:
     - python >=${{ python_min }}
-    - libcamera
+    # libcamera 0.x breaks API/ABI every minor release and its Python bindings
+    # are explicitly unstable, so allow only the minors tested on hardware
+    # (Pi 5 + Camera Module 3, picam2_check.py from conda-forge/libcamera-feedstock#31).
+    - libcamera >=0.7,<0.9
     - pidng
     - av
     - jsonschema
