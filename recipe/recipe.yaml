@@ -11,14 +11,14 @@ source:
 
 build:
   number: 0
-  script: ${{ PYTHON }} -m pip install .
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   noarch: python
 
 requirements:
   host:
     - python ${{ python_min }}.*
     - pip
-    - setuptools
+    - setuptools >=64
   run:
     - python >=${{ python_min }}
     - libcamera
@@ -30,7 +30,6 @@ requirements:
     - numpy
     - piexif
     - pillow
-    - python-prctl
     - simplejpeg
     - tqdm
     - py-videodev2
@@ -41,6 +40,8 @@ tests:
   - python:
       imports:
         - picamera2
+      # piexif from conda-forge ships wheel tags pip rejects:
+      # "piexif 1.1.3 is not supported on this platform"
       pip_check: false
       python_version:
         - ${{ python_min }}.*
@@ -52,7 +53,14 @@ tests:
 
 about:
   homepage: https://github.com/RaspberryPi/picamera2
+  repository: https://github.com/RaspberryPi/picamera2
+  documentation: https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf
   summary: The libcamera-based Python interface to Raspberry Pi cameras, based on the original Picamera library
+  description: |
+    Picamera2 is the libcamera-based replacement for Picamera, which was a
+    Python interface to the Raspberry Pi's legacy camera stack. It provides
+    an easy to use Python API for capturing stills and video, with preview
+    windows, encoders and outputs built on top of libcamera.
   license: BSD-2-Clause
   license_file: LICENSE
 
